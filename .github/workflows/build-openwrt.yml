@@ -51,18 +51,7 @@ jobs:
         df -hT $PWD
         git clone $REPO_URL -b $REPO_BRANCH openwrt
         ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
-        
-    - name: Clone custom packages
-      run: |
-        cd openwrt/package
-        svn co https://github.com/vernesong/OpenClash/trunk/luci-app-openclash
-        git clone https://github.com/VPN-V2Ray/luci-theme-edge
-        git clone https://github.com/jerrykuku/luci-app-argon-config
-        git clone https://github.com/tindy2013/openwrt-subconverter
-        cd lean
-        rm -rf luci-theme-argon
-        git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git
-        
+                
     - name: Load custom feeds
       run: |
         [ -e $FEEDS_CONF ] && mv $FEEDS_CONF openwrt/feeds.conf.default
